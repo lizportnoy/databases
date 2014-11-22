@@ -1,18 +1,36 @@
 var models = require('../models');
-var bluebird = require('bluebird');
+var bluebird = require('bluebird'); // promises library
 
 
 
 module.exports = {
-  messages: {
-    get: function (req, res) {}, // a function which handles a get request for all messages
-    post: function (req, res) {} // a function which handles posting a message to the database
+  users: {
+    get: function (req, res) {
+      models.users.get(req, res);
+    }, 
+    post: function (req, res) {
+      models.users.post(req, res);
+    } 
   },
 
-  users: {
+  rooms: {
     // Ditto as above
-    get: function (req, res) {},
-    post: function (req, res) {}
-  }
+    get: function (req, res) {
+      models.rooms.post(req, res);
+    },
+    post: function (req, res) {
+      models.rooms.post(req, res);
+    }
+  },
+
+  messages: {
+    get: function (req, res) {
+      models.messages.get(req, res);
+    }, 
+    post: function (req, res) {
+      models.messages.post(req, res);
+    } 
+  },
+
 };
 

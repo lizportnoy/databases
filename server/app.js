@@ -4,6 +4,15 @@ var db = require('./db');
 // Middleware
 var morgan = require('morgan');
 var parser = require('body-parser');
+var allowCrossDomain = function(req, res, next) {
+  res.header("access-control-allow-origin", "*");
+  res.header("access-control-allow-methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("access-control-allow-headers", "content-type, accept");
+  res.header("access-control-max-age", 10);
+  res.header("Content-Type", "application/json");
+  next();
+};
+
 
 // Router
 var router = require('./routes.js');
@@ -17,6 +26,7 @@ app.set("port", 3000);
 // Logging and parsing
 app.use(morgan('dev'));
 app.use(parser.json());
+app.use(allowCrossDomain);
 
 // Set up our routes
 app.use("/classes", router);
