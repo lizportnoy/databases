@@ -30,17 +30,16 @@ var collectData = function (request, callback) {
 module.exports = {
   users: {
     get: function (request, response) {
-      sendResponse(response, {results: messages});
-      collectData(request, function (username){ // passes in callback to collectData so that on end of pieceing together data of posted Message, the following actions occur:
-      // get username from window
-      if (db.getUser === undefined) {
-        db.storeUser(sendResponse(response, {couldBAnything: 1}));
-      };
-      
-      ; 
-      // get user IDs, get usernames
+      var callback = sendResponse(response, {results: messages})
+      db.getUsers();
     },
     post: function (request, response) {
+      collectData(request, function (username){ 
+      if (db.getUser(sendResponse(response, {couldBAnything: 1})) === undefined) {
+        db.storeUser(sendResponse(response, {couldBAnything: 1}));
+      }; else {
+        send reponse()
+      }
     }
   },
 

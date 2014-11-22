@@ -1,7 +1,8 @@
 var controllers = require('./controllers');
 var router = require('express').Router();
 
-// utilities
+
+router1.route("/")
 for (var route in controllers) {
 
   router.route("/" + route)
